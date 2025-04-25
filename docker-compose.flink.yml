@@ -15,14 +15,14 @@ services:
         jobmanager.memory.process.size: 1600m
         taskmanager.memory.process.size: 1728m
         parallelism.default: 2
+    volumes:
+      - ./flink-job:/opt/flink/bin
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8081/overview"]
       interval: 30s
       timeout: 10s
       retries: 3
-    # networks:
-    #   - easymlops_network
-
+    
   taskmanager:
     image: apache/flink:1.18.1
     container_name: flink-taskmanager
@@ -35,9 +35,9 @@ services:
         FLINK_PROPERTIES=
         taskmanager.numberOfTaskSlots: 2
         taskmanager.memory.process.size: 1728m
+    volumes:
+      - ./flink-job:/opt/flink/bin
     scale: 1
-    # networks:
-    #   - easymlops_network
-# networks:
-#   easymlops_network:
-#     external: true
+    
+volumes:
+  flink_data:

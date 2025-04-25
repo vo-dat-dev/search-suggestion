@@ -110,6 +110,8 @@ When developing Flink jobs:
 - Schema Registry is available at `http://schema-registry:8081`
 - Default parallelism is set to 2
 
+For internal applications (from other Docker containers):
+
 ## 🛑 Stopping the Services
 
 To stop the services:
